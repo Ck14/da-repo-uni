@@ -4,6 +4,7 @@ import { ObraService } from './obra.service';
 import { ProyectoService } from './proyecto.service';
 import { ActividadService } from './actividad.service';
 import { RenglonService } from './renglon.service';
+import { EstadisticaService } from './estadistica.service';
 
 @Controller('query')
 export class QueryController {
@@ -13,6 +14,7 @@ export class QueryController {
         private readonly proyectoService: ProyectoService,
         private readonly actividadService: ActividadService,
         private readonly renglonService: RenglonService,
+        private readonly estadisticaService: EstadisticaService,
     ) { }
 
     @Get('programas/nombres')
@@ -61,5 +63,10 @@ export class QueryController {
             parseInt(codigoActividad, 10),
             parseInt(codigoObra, 10)
         );
+    }
+
+    @Get('estadisticas/top5-programas-menor-ejecucion')
+    getTop5ProgramasMenorEjecucion() {
+        return this.estadisticaService.getTop5ProgramasMenorEjecucion();
     }
 } 
