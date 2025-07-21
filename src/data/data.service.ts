@@ -25,6 +25,7 @@ export class DataService implements OnModuleInit {
     private get apiBody() {
         return {
             resource_id: this.resourceId,
+            limit: 32000,
             filters: {
                 codigoEntidad: this.codigoEntidad,
             },
