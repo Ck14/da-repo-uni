@@ -3,6 +3,7 @@ import { ProgramaService } from './programa.service';
 import { ObraService } from './obra.service';
 import { ProyectoService } from './proyecto.service';
 import { ActividadService } from './actividad.service';
+import { RenglonService } from './renglon.service';
 
 @Controller('query')
 export class QueryController {
@@ -11,6 +12,7 @@ export class QueryController {
         private readonly obraService: ObraService,
         private readonly proyectoService: ProyectoService,
         private readonly actividadService: ActividadService,
+        private readonly renglonService: RenglonService,
     ) { }
 
     @Get('programas/nombres')
@@ -44,5 +46,20 @@ export class QueryController {
     @Get('actividades')
     getActividadesWithTotals(@Query('codigoPrograma') codigoPrograma: string, @Query('codigoProyecto') codigoProyecto: string) {
         return this.actividadService.getActividadesWithTotals(parseInt(codigoPrograma, 10), parseInt(codigoProyecto, 10));
+    }
+
+    @Get('renglones')
+    getRenglonesWithTotals(
+        @Query('codigoPrograma') codigoPrograma: string,
+        @Query('codigoProyecto') codigoProyecto: string,
+        @Query('codigoActividad') codigoActividad: string,
+        @Query('codigoObra') codigoObra: string
+    ) {
+        return this.renglonService.getRenglonesWithTotals(
+            parseInt(codigoPrograma, 10),
+            parseInt(codigoProyecto, 10),
+            parseInt(codigoActividad, 10),
+            parseInt(codigoObra, 10)
+        );
     }
 } 
