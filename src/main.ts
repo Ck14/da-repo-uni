@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: ['http://localhost:3000'], // o '*' para todos los orígenes (no recomendado en producción)
+    origin: ['http://localhost:3000', 'http://167.88.46.48:3000'], // Incluye tanto localhost como la IP de producción
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
