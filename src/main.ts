@@ -5,7 +5,14 @@ import { ConfigService } from '@nestjs/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://167.88.46.48:3000'], // Incluye tanto localhost como la IP de producción
+    origin: [
+      'http://localhost:3000',           // Desarrollo local
+      'http://167.88.46.48:3000',        // IP directa
+      'http://chimaltransparente.org',   // Dominio principal
+      'https://chimaltransparente.org',  // Dominio con HTTPS
+      'http://www.chimaltransparente.org', // Subdominio www
+      'https://www.chimaltransparente.org' // Subdominio www con HTTPS
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
